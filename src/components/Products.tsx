@@ -13,7 +13,6 @@ export default function Products() {
     try {
       const { data } = await axios
         .get(`https://wine-back-test.herokuapp.com/products?page=${num}&limit=9`);
-      console.log(data);
 
       setProducts(data);
       return data;
