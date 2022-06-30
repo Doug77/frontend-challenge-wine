@@ -1,8 +1,8 @@
 import { useEffect, useContext } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import { IProduct } from '../interfaces/ProductInterface';
 import ProductContext from '../context/ProductContext';
+import CardProduct from './CardProduct';
 
 export default function Products() {
   const { products, setProducts } = useContext(ProductContext);
@@ -121,41 +121,7 @@ export default function Products() {
         </form>
       </div>
       <span>{`${products?.totalItems} produtos encontrados`}</span>
-      <div>
-        {
-          products?.items.map((el: IProduct) => (
-            <div
-              key={el.id}
-            >
-              <img src={el.image} alt="img-wine" width="80px" />
-              <div>
-                {el.name}
-              </div>
-              <div>
-                <span>
-                  { el.price }
-                </span>
-                {' '}
-                <span>
-                  {`${el.discount}% OFF`}
-                </span>
-              </div>
-              <div>
-                <span>{`SÓCIO WINE R$ ${el.priceMember}`}</span>
-                {' '}
-                <br />
-                <span>{`NÃO SÓCIO R$ ${el.priceNonMember}`}</span>
-              </div>
-              <button
-                type="button"
-                onClick={({target}) => console.log(target)}
-              >
-                ADICIONAR
-              </button>
-            </div>
-          ))
-        }
-      </div>
+      <CardProduct />
       <div>
         <button
           type="button"
