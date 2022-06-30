@@ -1,5 +1,7 @@
+import {IProduct} from './ProductInterface'
+
 export interface IProducts {
-  items: [];
+  items: IProduct[];
   itemsPerPage: number;
   page: number;
   totalItems: number;
