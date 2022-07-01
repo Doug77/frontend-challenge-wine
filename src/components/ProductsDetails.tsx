@@ -8,11 +8,60 @@ export default function ProductsDetails() {
   const { products } = useContext(ProductContext);
   const { query: { details }} = useRouter();
   const [productDetail, setProductDetail] = useState<IProduct[]>();
+  const [quantityProduct, setQuantityProduct] = useState<number>(0);
+
+  type productCart = {
+    id: number;
+    name: string;
+    price: number;
+    size: string;
+    quantityProduct: number;
+  }
 
   useEffect(() => {
     const productFilter = products.items.filter((el) => el.id === Number(details));
     setProductDetail(productFilter);
   }, []);
+
+  const inputQuantity = ({ value }): void => {
+    if (quantityProduct < 1) return setQuantityProduct(0);
+    setQuantityProduct(Number(value));
+  }
+
+  const changeQuantity = (action: string) => {
+    if (action === 'add') {
+      return setQuantityProduct(quantityProduct + 1);
+    } else {
+      return setQuantityProduct(quantityProduct - 1);
+    }
+  }
+
+  const addToCart = (product: productCart) => {
+    const myCurrentCart = JSON.parse(localStorage.getItem('myCart'));
+    const sameItem = myCurrentCart?.find((el) => el?.id === product?.id);
+
+    if (sameItem) {
+      const addToQuantity = myCurrentCart.map((el) => {
+        if (el?.id === sameItem?.id) {
+          el.quantityProduct += product.quantityProduct;
+          return el;
+        }
+        return el;
+      });
+
+      return localStorage.setItem('myCart', JSON.stringify(addToQuantity));
+    }
+
+    if (!myCurrentCart) {
+      localStorage.setItem('myCart', JSON.stringify([product]));
+
+      return;
+    }
+
+    const newCart = [...myCurrentCart, product];
+
+    localStorage.setItem('myCart', JSON.stringify(newCart));
+  };
 
   return (
     <div>
@@ -46,13 +95,36 @@ export default function ProductsDetails() {
               </div>
               <div>
                 <div>
-                  <button>-</button>
+                  <button
+                  type='button'
+                  onClick={ () => changeQuantity('subtract') }
+                  >
+                    -
+                  </button>
                   <input
-                    type='text'
+                    type='number'
+                    onChange={ ({target}) => inputQuantity(target) }
+                    value={ quantityProduct }
                   />
-                  <button>+</button>
+                  <button
+                  type='button'
+                  onClick={ () => changeQuantity('add') }
+                  >
+                    +
+                  </button>
                 </div>
-                <button>Adicionar</button>
+                <button
+                  type='button'
+                  onClick={ () => addToCart({
+                    id: el.id,
+                    name: el.name,
+                    price: el.price,
+                    size: el.size,
+                    quantityProduct,
+                  }) }
+                >
+                  Adicionar
+                </button>
               </div>
             </div>
           </div>
