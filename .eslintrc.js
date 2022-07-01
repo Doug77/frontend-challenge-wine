@@ -30,6 +30,8 @@ module.exports = {
     },
   },
   rules: {
+    'no-empty-function': 'on',
+    '@typescript-eslint/no-empty-function': ['error'],
     '@typescript-eslint/ban-ts-comment': 'off',
     'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
