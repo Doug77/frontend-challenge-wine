@@ -12,8 +12,7 @@ export default function ProductsDetails() {
   useEffect(() => {
     const productFilter = products.items.filter((el) => el.id === Number(details));
     setProductDetail(productFilter);
-  }, [])
-  console.log(productDetail);
+  }, []);
 
   return (
     <div>
