@@ -3,6 +3,7 @@ import ProductContext from '../context/ProductContext';
 import { useRouter } from 'next/router';
 import { IProduct } from '../interfaces/ProductInterface';
 import Link from 'next/link';
+import { DivDetails } from '../styles/details-products-styles';
 
 export default function ProductsDetails() {
   const { products } = useContext(ProductContext);
@@ -64,7 +65,7 @@ export default function ProductsDetails() {
   };
 
   return (
-    <div>
+    <DivDetails>
       <Link href='/products/1' >Voltar</Link>
       {
         productDetail?.map((el: IProduct) => (
@@ -130,6 +131,6 @@ export default function ProductsDetails() {
           </div>
         ))
       }
-    </div>
+    </DivDetails>
   );
 }
