@@ -170,7 +170,37 @@ export const DivButtonAdd = styled.div`
 `
 
 export const DivButtonPages = styled.div`
-  display: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  button {
+    font-size: 10px;
+    border: 1px solid #B6116E;
+    background-color: #F5F8FA;
+    width: 45px;
+    height: 25px;
+    margin-right: 10px;
+    color: #B6116E;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 3px;
+  }
+
+  button:focus {
+    background-color: #B6116E;
+    color: white;
+  }
+
+  button:hover {
+    background-color: #B6116E;
+    color: white;
+    transition: 0.3s;
+  }
+
+  button:disabled {
+    display: none;
+  }
 
   @media screen and (min-width: 769px){
     display: flex;
