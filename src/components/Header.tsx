@@ -1,25 +1,99 @@
 import Link from 'next/link';
+import Image from 'next/image';
+import { useState } from 'react';
+
+import cart from '../../assets/images/Carrinho.svg';
+import Busca from '../../assets/images/Busca2.svg'
+import conta from '../../assets/images/conta.svg'
+import logo from '../../assets/images/black.svg'
+import {
+  BtnCart,
+  BtnProfile,
+  ContainerButtons,
+  ContainerHeader,
+  DivIconBtn,
+  DivIconProfile,
+  DivIconSearch,
+  HeaderNav,
+  HeaderStyled,
+  InputSearchStyled,
+  NavBarStyled,
+} from '../styles/header-style';
+import { DivContainer, DivLine1, DivLine2, DivLine3 } from '../styles/mobile/burger-menu-styles';
+import NavBarMobile from './mobile/NavBarMobile';
 
 export default function Header() {
+  const [seacrhInput, setSearchInput] = useState(false);
+  const [menuMobile, setMenuMobile] = useState<boolean>(false);
+
   return (
-    <header>
-      <img src="https://img.wine.com.br/logo/wine/black/wine.svg" alt="wine-logo" />
-      <nav>
-        <Link href="/clube">Clube</Link>
-        <Link href="/loja">Loja</Link>
-        <Link href="/produtores">Produtores</Link>
-        <Link href="/ofertas">Ofertas</Link>
-        <Link href="/eventos">Eventos</Link>
-      </nav>
-      <div>
-        <input type="text" />
-        <button type="button">
-          Perfil
-        </button>
-        <button type="button">
-          Carrinho
-        </button>
-      </div>
-    </header>
+    <HeaderStyled>
+      <ContainerHeader>
+        <DivContainer
+          role='button'
+          onClick={ () => setMenuMobile(!menuMobile)}
+        >
+          <DivLine1></DivLine1>
+          <DivLine2></DivLine2>
+          <DivLine3></DivLine3>
+        </DivContainer>
+        <Image
+          src={logo}
+          alt="wine-logo"
+          width='100px'
+          height='100px'
+        />
+        {
+          menuMobile ? <NavBarMobile /> :
+          <NavBarStyled>
+            <Link href="/products/1">Clube</Link>
+            <Link href="/products/1">Loja</Link>
+            <Link href="/products/1">Produtores</Link>
+            <Link href="/products/1">Ofertas</Link>
+            <Link href="/products/1">Eventos</Link>
+          </NavBarStyled>
+        }
+        <HeaderNav>
+          <Link href="/products/1">Clube</Link>
+          <Link href="/products/1">Loja</Link>
+          <Link href="/products/1">Produtores</Link>
+          <Link href="/products/1">Ofertas</Link>
+          <Link href="/products/1">Eventos</Link>
+        </HeaderNav>
+      </ContainerHeader>
+      <ContainerButtons>
+        { seacrhInput && <InputSearchStyled type="text" />}
+        <DivIconSearch role='button' onClick={ () => setSearchInput(!seacrhInput) }>
+          <Image
+            src={ Busca }
+            width='50px'
+            height='50px'
+            alt='search-icon'
+          />
+        </DivIconSearch>
+        <DivIconProfile>
+          <BtnProfile
+            type="button"
+          >
+            <Image
+              src={ conta }
+              width='50px'
+              height='50px'
+              alt='user-icon'
+            />
+          </BtnProfile>
+        </DivIconProfile>
+        <DivIconBtn>
+          <BtnCart type="button">
+            <Image
+              src={ cart }
+              width='50px'
+              height='50px'
+              alt='cart-icon'
+            />
+          </BtnCart>
+        </DivIconBtn>
+      </ContainerButtons>
+    </HeaderStyled>
   );
 }
