@@ -3,7 +3,8 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import ProductContext from '../context/ProductContext';
 import CardProduct from './CardProduct';
-import { FormStyled } from '../styles/main-products-styles';
+
+import { DivButtonPages, DivTextPrice, FormFilter, FormStyled, MainCardProducts } from '../styles/main-products-styles';
 
 export default function Products() {
   const { products, setProducts } = useContext(ProductContext);
@@ -97,10 +98,15 @@ export default function Products() {
   }, [CURRENT_URL, router, router.asPath]);
 
   return (
-    <div>
+    <MainCardProducts>
       <FormStyled>
-        Refine sua busca
-        <form>
+        <span>
+          Refine sua busca
+        </span>
+        <FormFilter>
+          <DivTextPrice>
+            Por Preço
+          </DivTextPrice>
           <label htmlFor="40">
             <input
               type="radio"
@@ -109,6 +115,7 @@ export default function Products() {
               value="1"
               onClick={(event) => filterByPrice(event)}
             />
+            {' '}
             Até R$40
           </label>
           <label htmlFor="60">
@@ -119,6 +126,7 @@ export default function Products() {
               value="2"
               onClick={(event) => filterByPrice(event)}
             />
+            {' '}
             R$40 A R$60
           </label>
           <label htmlFor="100">
@@ -129,9 +137,9 @@ export default function Products() {
               value="3"
               onClick={(event) => filterByPrice(event)}
             />
+            {' '}
             R$100 A R$200
           </label>
-
           <label htmlFor="200">
             <input
               type="radio"
@@ -140,6 +148,7 @@ export default function Products() {
               value="4"
               onClick={(event) => filterByPrice(event)}
             />
+            {' '}
             R$200 A R$500
           </label>
           <label htmlFor="500">
@@ -150,32 +159,35 @@ export default function Products() {
               value="5"
               onClick={(event) => filterByPrice(event)}
             />
+            {' '}
             Acima de R$500
           </label>
-        </form>
+        </FormFilter>
       </FormStyled>
-      <CardProduct filter={filterProducts}/>
-      {
-        !filterProducts ? (
-          <div>
-            <button
-              type="button"
-              onClick={() => changePage('previous')}
-              disabled={(products?.page === 1)}
-            >
-              Anterior
-            </button>
-            { buttonPages() }
-            <button
-              type="button"
-              onClick={() => changePage('next')}
-              disabled={(products?.totalPages === products?.page)}
-            >
-              Próximo
-            </button>
-          </div>
-        ) : <span>{' '}</span>
-      }
-    </div>
+      <div>
+        <CardProduct filter={filterProducts}/>
+        {
+          !filterProducts ? (
+            <DivButtonPages>
+              <button
+                type="button"
+                onClick={() => changePage('previous')}
+                disabled={(products?.page === 1)}
+              >
+                Anterior
+              </button>
+              { buttonPages() }
+              <button
+                type="button"
+                onClick={() => changePage('next')}
+                disabled={(products?.totalPages === products?.page)}
+              >
+                Próximo
+              </button>
+            </DivButtonPages>
+          ) : <span>{' '}</span>
+        }
+      </div>
+    </MainCardProducts>
   );
 }

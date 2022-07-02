@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from 'react';
+import { useContext } from 'react';
 import ProductContext from '../context/ProductContext';
 import { IProduct } from '../interfaces/ProductInterface';
 import { useRouter } from 'next/router';
