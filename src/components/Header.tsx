@@ -11,43 +11,67 @@ import {
   BtnProfile,
   ContainerButtons,
   ContainerHeader,
-  DivIcon,
+  DivIconBtn,
+  DivIconProfile,
+  DivIconSearch,
+  HeaderNav,
   HeaderStyled,
   InputSearchStyled,
   NavBarStyled,
 } from '../styles/header-style';
+import { DivContainer, DivLine1, DivLine2, DivLine3 } from '../styles/mobile/burger-menu-styles';
+import NavBarMobile from './mobile/NavBarMobile';
 
 export default function Header() {
   const [seacrhInput, setSearchInput] = useState(false);
+  const [menuMobile, setMenuMobile] = useState<boolean>(false);
 
   return (
     <HeaderStyled>
       <ContainerHeader>
+        <DivContainer
+          role='button'
+          onClick={ () => setMenuMobile(!menuMobile)}
+        >
+          <DivLine1></DivLine1>
+          <DivLine2></DivLine2>
+          <DivLine3></DivLine3>
+        </DivContainer>
         <Image
           src={logo}
           alt="wine-logo"
           width='100px'
           height='100px'
         />
-        <NavBarStyled>
+        {
+          menuMobile ? <NavBarMobile /> :
+          <NavBarStyled>
+            <Link href="/products/1">Clube</Link>
+            <Link href="/products/1">Loja</Link>
+            <Link href="/products/1">Produtores</Link>
+            <Link href="/products/1">Ofertas</Link>
+            <Link href="/products/1">Eventos</Link>
+          </NavBarStyled>
+        }
+        <HeaderNav>
           <Link href="/products/1">Clube</Link>
           <Link href="/products/1">Loja</Link>
           <Link href="/products/1">Produtores</Link>
           <Link href="/products/1">Ofertas</Link>
           <Link href="/products/1">Eventos</Link>
-        </NavBarStyled>
+        </HeaderNav>
       </ContainerHeader>
       <ContainerButtons>
         { seacrhInput && <InputSearchStyled type="text" />}
-        <DivIcon role='button' onClick={ () => setSearchInput(!seacrhInput) }>
+        <DivIconSearch role='button' onClick={ () => setSearchInput(!seacrhInput) }>
           <Image
             src={ Busca }
             width='50px'
             height='50px'
             alt='search-icon'
           />
-        </DivIcon>
-        <DivIcon>
+        </DivIconSearch>
+        <DivIconProfile>
           <BtnProfile
             type="button"
           >
@@ -58,8 +82,8 @@ export default function Header() {
               alt='user-icon'
             />
           </BtnProfile>
-        </DivIcon>
-        <DivIcon>
+        </DivIconProfile>
+        <DivIconBtn>
           <BtnCart type="button">
             <Image
               src={ cart }
@@ -68,7 +92,7 @@ export default function Header() {
               alt='cart-icon'
             />
           </BtnCart>
-        </DivIcon>
+        </DivIconBtn>
       </ContainerButtons>
     </HeaderStyled>
   );

@@ -18,7 +18,8 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    background: #FFF;
+    overflow-x: hidden;
+    background: #F5F8FA;
     font-family: 'Neo Sans Pro';
   }
 `;
