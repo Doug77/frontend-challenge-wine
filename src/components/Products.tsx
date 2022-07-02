@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import ProductContext from '../context/ProductContext';
 import CardProduct from './CardProduct';
 
-import { DivButtonPages, DivTextPrice, FormFilter, FormStyled, MainCardProducts } from '../styles/main-products-styles';
+import { ContainerButtons, DivButtonPages, DivTextPrice, FormFilter, FormStyled, MainCardProducts } from '../styles/main-products-styles';
 
 export default function Products() {
   const { products, setProducts } = useContext(ProductContext);
@@ -164,7 +164,7 @@ export default function Products() {
           </label>
         </FormFilter>
       </FormStyled>
-      <div>
+      <ContainerButtons>
         <CardProduct filter={filterProducts}/>
         {
           !filterProducts ? (
@@ -187,7 +187,7 @@ export default function Products() {
             </DivButtonPages>
           ) : <span>{' '}</span>
         }
-      </div>
+      </ContainerButtons>
     </MainCardProducts>
   );
 }

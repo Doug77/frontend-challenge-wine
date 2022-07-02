@@ -107,6 +107,7 @@ export const ButtonQuantity = styled.button`
   border-radius: 50%;
   background-color: #7EBC43;
   width: 25px;
+  cursor: pointer;
 `
 
 export const ButtonAddToCart = styled.button`
@@ -118,4 +119,5 @@ export const ButtonAddToCart = styled.button`
   background-color: #7EBC43;
   color: #FFFFFF;
   margin-left: 45px;
+  cursor: pointer;
 `
