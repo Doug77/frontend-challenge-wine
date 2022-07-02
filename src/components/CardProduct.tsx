@@ -4,9 +4,17 @@ import { IProduct } from '../interfaces/ProductInterface';
 import { useRouter } from 'next/router';
 import NotFound from './NotFound';
 import {
+  DivButtonAdd,
+  DivNameWine,
+  DivPrice,
+  DivPriceSocio,
   DivProduct,
   DivProductCard,
-  DivSpanTotalProducts
+  DivSpanTotalProducts,
+  PriceFull,
+  SpanOffPrice,
+  SpanPrice,
+  SpanWineSocio
 } from '../styles/main-products-styles';
 
 export default function CardProduct({ filter }) {
@@ -16,6 +24,11 @@ export default function CardProduct({ filter }) {
 
   const pushToDetails = (num: number) => {
     router.push(`/details/${num}`);
+  }
+
+  const formatPrice = (num: number) => {
+    const price = Number(num).toFixed(2).replace('.', ',');
+    return price;
   }
 
   const createCardProduct = (product) => {
@@ -32,36 +45,50 @@ export default function CardProduct({ filter }) {
         <DivProductCard>
           {
             product?.map((el: IProduct) => (
-              <DivProduct
+              <div
                 key={el.id}
               >
-                <img src={el.image} alt="img-wine" width="80px" />
-                <div>
-                  {el.name}
-                </div>
-                <div>
-                  <span>
-                    { el.price }
-                  </span>
-                  {' '}
-                  <span>
-                    {`${el.discount}% OFF`}
-                  </span>
-                </div>
-                <div>
-                  <span>{`SÓCIO WINE R$ ${el.priceMember}`}</span>
-                  {' '}
-                  <br />
-                  <span>{`NÃO SÓCIO R$ ${el.priceNonMember}`}</span>
-                </div>
-                <button
-                  id={el.id.toString()}
-                  type="button"
-                  onClick={({target}) => pushToDetails(Number((target as HTMLInputElement).id))}
-                >
-                  ADICIONAR
-                </button>
-              </DivProduct>
+                <DivProduct>
+                  <img src={el.image} alt="img-wine" width="80px" />
+                  <DivNameWine>
+                    {el.name}
+                  </DivNameWine>
+                  <div>
+                    <SpanPrice>
+                      R$
+                      { formatPrice(el.price) }
+                    </SpanPrice>
+                    {' '}
+                    <SpanOffPrice>
+                      {`${el.discount}% OFF`}
+                    </SpanOffPrice>
+                  </div>
+                  <DivPrice>
+                    <SpanWineSocio>
+                      SÓCIO
+                      <br/>
+                      WINE
+                    </SpanWineSocio>
+                    <DivPriceSocio>
+                      R$ {` \n ${formatPrice(el.priceMember)}`}
+                    </DivPriceSocio>
+                    {' '}
+                    <br />
+                  </DivPrice>
+                  <PriceFull>
+                    {`NÃO SÓCIO R$ ${formatPrice(el.priceNonMember)}`}
+                  </PriceFull>
+                </DivProduct>
+                <DivButtonAdd>
+                  <button
+                    id={el.id.toString()}
+                    type="button"
+                    onClick={({target}) => pushToDetails(Number((target as HTMLInputElement).id))}
+                  >
+                    ADICIONAR
+                  </button>
+                </DivButtonAdd>
+              </div>
             ))
           }
         </DivProductCard>
