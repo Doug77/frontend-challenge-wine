@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import ProductContext from '../context/ProductContext';
 import { useRouter } from 'next/router';
 import { IProduct } from '../interfaces/ProductInterface';
-import Link from 'next/link';
+import { AboutWine, ButtonAddToCart, ButtonQuantity, DetailsWine, DivButtonAdd, DivDetails, DivImageWine, MainDetailsProduct, NameWine, PriceMemberWine, PriceNonMemberWine, SommelierComment, TypeDetailsWine } from '../styles/details-products-styles';
 
 export default function ProductsDetails() {
   const { products } = useContext(ProductContext);
@@ -63,73 +63,79 @@ export default function ProductsDetails() {
     localStorage.setItem('myCart', JSON.stringify(newCart));
   };
 
+  const formatPrice = (num: number) => {
+    const price = Number(num).toFixed(2).replace('.', ',');
+    return price;
+  }
+
   return (
-    <div>
-      <Link href='/products/1' >Voltar</Link>
+    <DivDetails>
       {
         productDetail?.map((el: IProduct) => (
           <div key={el.id}>
-            <div>
-              <img src={el.image} alt='image-wine'/>
-            </div>
-            <div>
-              <div>
-                <span>{el.name}</span>
-                <img src={el.flag} alt='image-wine' width='30px'/>
-                <span>{el.country}</span>
-                <span>{el.type}</span>
-                <span>{el.classification}</span>
-                <span>{el.size}</span>
-                <span>{el.rating}</span>
-                <span>{el.avaliations}</span>
-              </div>
-              <div>
-                <span>R${el.price}</span>
-                <span>NÃO SÓCIO R$ {el.priceNonMember}/UN</span>
-              </div>
-              <div>
-                <span>Comentário do Sommelier</span>
-                <p>
-                  {el.sommelierComment}
-                </p>
-              </div>
-              <div>
+            <MainDetailsProduct>
+              <DivImageWine>
+                <img src={el.image} alt='image-wine' width='381px' height='579px'/>
+              </DivImageWine>
+              <AboutWine>
+                <DetailsWine>
+                  <NameWine>{el.name}</NameWine>
+                  <TypeDetailsWine>
+                    <img src={el.flag} alt='image-wine' width='16px'/>
+                    <span>{el.country}</span>
+                    <span>{el.type}</span>
+                    <span>{el.classification}</span>
+                    <span>{el.size}</span>
+                    <span>Nota: {el.rating}</span>
+                    <span>Avaliações: {el.avaliations}</span>
+                  </TypeDetailsWine>
+                </DetailsWine>
                 <div>
-                  <button
+                  <PriceMemberWine>R$ {formatPrice(el.priceMember)}</PriceMemberWine>
+                  <PriceNonMemberWine>NÃO SÓCIO R$ {formatPrice(el.priceNonMember)}/UN.</PriceNonMemberWine>
+                </div>
+                <SommelierComment>
+                  <span>Comentário do Sommelier</span>
+                  <p>
+                    {el.sommelierComment}
+                  </p>
+                </SommelierComment>
+                <DivButtonAdd>
+                  <ButtonQuantity
                   type='button'
                   onClick={ () => changeQuantity('subtract') }
                   >
                     -
-                  </button>
+                  </ButtonQuantity>
                   <input
                     type='number'
                     onChange={ ({target}) => inputQuantity(target) }
                     value={ quantityProduct }
                   />
-                  <button
+                  <ButtonQuantity
                   type='button'
                   onClick={ () => changeQuantity('add') }
                   >
                     +
-                  </button>
-                </div>
-                <button
-                  type='button'
-                  onClick={ () => addToCart({
-                    id: el.id,
-                    name: el.name,
-                    price: el.price,
-                    size: el.size,
-                    quantityProduct,
-                  }) }
-                >
-                  Adicionar
-                </button>
-              </div>
-            </div>
+                  </ButtonQuantity>
+                  <ButtonAddToCart
+                    type='button'
+                    onClick={ () => addToCart({
+                      id: el.id,
+                      name: el.name,
+                      price: el.price,
+                      size: el.size,
+                      quantityProduct,
+                    }) }
+                  >
+                    Adicionar
+                  </ButtonAddToCart>
+                </DivButtonAdd>
+              </AboutWine>
+            </MainDetailsProduct>
           </div>
         ))
       }
-    </div>
+    </DivDetails>
   );
 }
