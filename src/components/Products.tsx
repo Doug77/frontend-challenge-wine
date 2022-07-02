@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import ProductContext from '../context/ProductContext';
 import CardProduct from './CardProduct';
+import { FormStyled } from '../styles/main-products-styles';
 
 export default function Products() {
   const { products, setProducts } = useContext(ProductContext);
@@ -97,7 +98,7 @@ export default function Products() {
 
   return (
     <div>
-      <div>
+      <FormStyled>
         Refine sua busca
         <form>
           <label htmlFor="40">
@@ -152,7 +153,7 @@ export default function Products() {
             Acima de R$500
           </label>
         </form>
-      </div>
+      </FormStyled>
       <CardProduct filter={filterProducts}/>
       {
         !filterProducts ? (
