@@ -186,6 +186,7 @@ export const DivButtonPages = styled.div`
       color: #B6116E;
       cursor: pointer;
       transition: 0.3s;
+      border-radius: 3px;
     }
 
     button:focus {
