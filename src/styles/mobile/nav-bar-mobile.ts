@@ -4,7 +4,7 @@ export const NavBarStyledMobile = styled.nav`
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: 11vh;
+  top: 8.5vh;
   width: 80vw;
   height: 100vh;
   background-color: #FFFFFF;
@@ -12,7 +12,6 @@ export const NavBarStyledMobile = styled.nav`
   align-items: center;
   justify-content: space-around;
   transform: translateX(0%);
-  }
 
   a {
     text-decoration: none;
