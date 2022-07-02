@@ -54,15 +54,6 @@ export const ContainerButtons = styled.div`
   }
 `;
 
-export const InputSearchStyled = styled.input`
-  width: 150px;
-  position: absolute;
-  top: 11vh;
-  border: none;
-  border-bottom: 1px solid #D14B8F;
-  background-color: #F5F8FA;
-`;
-
 export const DivIconSearch = styled.div`
   @media screen and (min-width: 1024px) {
     margin-right: 15px;
