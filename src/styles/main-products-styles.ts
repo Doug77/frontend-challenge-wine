@@ -142,6 +142,14 @@ export const DivButtonAdd = styled.div`
     height: 40px;
     border-radius: 4px;
     box-shadow: 1px 2px 2px #7EBC43;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  button:hover {
+    cursor: pointer;
+    background-color: #91df46;
+    transition: 0.3s;
   }
 
   @media screen and (min-width: 769px){
@@ -156,6 +164,7 @@ export const DivButtonAdd = styled.div`
       height: 40px;
       border-radius: 4px;
       box-shadow: 1px 2px 2px #7EBC43;
+      cursor: pointer;
     }
   }
 `
@@ -175,11 +184,19 @@ export const DivButtonPages = styled.div`
       height: 38px;
       margin-right: 10px;
       color: #B6116E;
+      cursor: pointer;
+      transition: 0.3s;
     }
 
     button:focus {
       background-color: #B6116E;
       color: white;
+    }
+
+    button:hover {
+      background-color: #B6116E;
+      color: white;
+      transition: 0.3s;
     }
 
     button:disabled {
@@ -199,4 +216,8 @@ export const FormFilter = styled.form`
 
 export const DivTextPrice = styled.div`
   margin: 32px 0px 20px;
+`
+
+export const ContainerButtons = styled.div`
+  margin-bottom: 35px;
 `
