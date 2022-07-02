@@ -16,14 +16,12 @@ import {
   DivIconSearch,
   HeaderNav,
   HeaderStyled,
-  InputSearchStyled,
   NavBarStyled,
 } from '../styles/header-style';
 import { DivContainer, DivLine1, DivLine2, DivLine3 } from '../styles/mobile/burger-menu-styles';
 import NavBarMobile from './mobile/NavBarMobile';
 
 export default function Header() {
-  const [seacrhInput, setSearchInput] = useState(false);
   const [menuMobile, setMenuMobile] = useState<boolean>(false);
 
   return (
@@ -62,8 +60,7 @@ export default function Header() {
         </HeaderNav>
       </ContainerHeader>
       <ContainerButtons>
-        { seacrhInput && <InputSearchStyled type="text" />}
-        <DivIconSearch role='button' onClick={ () => setSearchInput(!seacrhInput) }>
+        <DivIconSearch >
           <Image
             src={ Busca }
             width='50px'
