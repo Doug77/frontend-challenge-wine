@@ -52,6 +52,14 @@ export const ContainerButtons = styled.div`
     align-items: center;
     justify-content: space-between;
   }
+
+  div:hover {
+    cursor: pointer;
+  }
+
+  button:hover {
+    cursor: pointer;
+  }
 `;
 
 export const DivIconSearch = styled.div`
