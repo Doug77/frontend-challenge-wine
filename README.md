@@ -26,7 +26,7 @@ Back-end:
   npm run dev
   ```
   
-## Executando test da aplicação.
+## Executando testes da aplicação.
 
 * Para utilizar testes com navegador:
 
