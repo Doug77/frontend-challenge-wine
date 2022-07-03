@@ -47,6 +47,7 @@ export default function CardProduct({ filter }) {
             product?.map((el: IProduct) => (
               <div
                 key={el.id}
+                data-testid='cards-products'
               >
                 <DivProduct>
                   <img src={el.image} alt="img-wine" width="80px" />
@@ -81,6 +82,7 @@ export default function CardProduct({ filter }) {
                 </DivProduct>
                 <DivButtonAdd>
                   <button
+                    data-testid='btn-add-to-cart'
                     id={el.id.toString()}
                     type="button"
                     onClick={({target}) => pushToDetails(Number((target as HTMLInputElement).id))}

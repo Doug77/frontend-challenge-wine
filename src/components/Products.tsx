@@ -28,6 +28,7 @@ export default function Products() {
     const pageButtons = Array.from({ length: products?.totalPages })
       .map((_el, index) => (
         <button
+          data-testid={`btn-number-page-${index + 1}`}
           // eslint-disable-next-line react/no-array-index-key
           key={index}
           id={`${index + 1}`}
@@ -109,6 +110,7 @@ export default function Products() {
           </DivTextPrice>
           <label htmlFor="40">
             <input
+              data-testid='filter-price-1'
               type="radio"
               id="40"
               name="valor"
@@ -120,6 +122,7 @@ export default function Products() {
           </label>
           <label htmlFor="60">
             <input
+              data-testid='filter-price-2'
               type="radio"
               id="60"
               name="valor"
@@ -131,6 +134,7 @@ export default function Products() {
           </label>
           <label htmlFor="100">
             <input
+              data-testid='filter-price-3'
               type="radio"
               id="100"
               name="valor"
@@ -142,6 +146,7 @@ export default function Products() {
           </label>
           <label htmlFor="200">
             <input
+              data-testid='filter-price-4'
               type="radio"
               id="200"
               name="valor"
@@ -153,6 +158,7 @@ export default function Products() {
           </label>
           <label htmlFor="500">
             <input
+              data-testid='filter-price-5'
               type="radio"
               id="500"
               name="valor"
@@ -170,6 +176,7 @@ export default function Products() {
           !filterProducts ? (
             <DivButtonPages>
               <button
+                data-testid='btn-previous-page'
                 type="button"
                 onClick={() => changePage('previous')}
                 disabled={(products?.page === 1)}
@@ -178,6 +185,7 @@ export default function Products() {
               </button>
               { buttonPages() }
               <button
+                data-testid='btn-next-page'
                 type="button"
                 onClick={() => changePage('next')}
                 disabled={(products?.totalPages === products?.page)}
