@@ -16,7 +16,7 @@ Back-end:
 1. Entre no diretório do repositório e instale as dependências 
   * `npm install`
 
-2. Certifique-se de ter o [NodeJs](https://nodejs.org/en/) instalado e em execução.
+2. Certifique-se de ter o [NodeJs](https://nodejs.org/en/) instalado.
 
 ## Executando aplicação
 
