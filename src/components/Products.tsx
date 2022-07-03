@@ -173,7 +173,7 @@ export default function Products() {
       <ContainerButtons>
         <CardProduct filter={filterProducts}/>
         {
-          !filterProducts ? (
+          !filterProducts && !(Array.isArray(products)) ? (
             <DivButtonPages>
               <button
                 data-testid='btn-previous-page'

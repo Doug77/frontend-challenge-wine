@@ -32,6 +32,63 @@ export default function CardProduct({ filter }) {
   }
 
   const createCardProduct = (product) => {
+    const defaultProducts: any = products;
+
+    if (!product) return (
+      <DivProductCard>
+        {
+          defaultProducts?.map((el: IProduct) => (
+            <div
+              key={el.id}
+              data-testid='cards-products'
+            >
+              <DivProduct>
+                <img src={el.image} alt="img-wine" width="80px" />
+                <DivNameWine>
+                  {el.name}
+                </DivNameWine>
+                <div>
+                  <SpanPrice>
+                    R$
+                    { formatPrice(el.price) }
+                  </SpanPrice>
+                  {' '}
+                  <SpanOffPrice>
+                    {`${el.discount}% OFF`}
+                  </SpanOffPrice>
+                </div>
+                <DivPrice>
+                  <SpanWineSocio>
+                    SÓCIO
+                    <br/>
+                    WINE
+                  </SpanWineSocio>
+                  <DivPriceSocio>
+                    R$ {` \n ${formatPrice(el.priceMember)}`}
+                  </DivPriceSocio>
+                  {' '}
+                  <br />
+                </DivPrice>
+                <PriceFull>
+                  {`NÃO SÓCIO R$ ${formatPrice(el.priceNonMember)}`}
+                </PriceFull>
+              </DivProduct>
+              <DivButtonAdd>
+                <button
+                  data-testid='btn-add-to-cart'
+                  id={el.id.toString()}
+                  type="button"
+                  onClick={({target}) => pushToDetails(Number((target as HTMLInputElement).id))}
+                >
+                  ADICIONAR
+                </button>
+              </DivButtonAdd>
+            </div>
+          ))
+        }
+      </DivProductCard>
+    )
+
     return (
       <>
         <DivSpanTotalProducts>
