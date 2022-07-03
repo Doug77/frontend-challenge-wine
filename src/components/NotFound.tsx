@@ -6,10 +6,19 @@ export default function NotFound() {
 
   return (
     <div>
-      <Link href='/products'>
-        Voltar
-      </Link>
-      <div>
+      <div
+        data-testid='link-to-back'
+      >
+        <Link
+          href='/products'
+
+        >
+          Voltar
+        </Link>
+      </div>
+      <div
+        data-testid='products-not-found'
+      >
         Nenhum produto encontrado! :(
       </div>
     </div>

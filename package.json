@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "cy": "npx cypress run",
+    "cy:open": "npx cypress open"
   },
   "dependencies": {
     "axios": "^0.27.2",
@@ -23,6 +25,7 @@
     "@typescript-eslint/eslint-plugin": "^5.30.0",
     "@typescript-eslint/parser": "^5.30.0",
     "babel-plugin-styled-components": "^2.0.7",
+    "cypress": "^10.3.0",
     "eslint": "^8.18.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-next": "12.2.0",
